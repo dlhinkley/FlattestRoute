@@ -19,7 +19,6 @@ google.load("visualization", "1", {packages: ["columnchart"]});
 $(function () {
     var from = getURLParameter('from');
     var to = getURLParameter('to');
-    var travelMode = getURLParameter('travelMode');
     measurementMode = getURLParameter('measurementMode');
 
     // If this link is being shared set to and from
@@ -31,9 +30,6 @@ $(function () {
         $('#to').val(decodeURLParameter(to));
     }
 
-    if (travelMode != "null") {
-        $('#travel-mode').val(decodeURLParameter(travelMode));
-    }
 
     if (measurementMode === 'null') {
         measurementMode = 'miles';
@@ -118,7 +114,7 @@ function calcRoute() {
     var unitSystem = google.maps.UnitSystem.IMPERIAL;
     var start = $("#from").val() || $("#from").attr("placeholder");
     var end = $("#to").val() || $("#to").attr("placeholder");
-    var travelMode = $("#travel-mode").val();
+    var travelMode = 'Bicycling';
     if (measurementMode === "km") {
       unitSystem = google.maps.UnitSystem.METRIC;
     };
@@ -221,7 +217,7 @@ function plotElevation(elevations, status) {
 
     elevationChart = new google.visualization.ColumnChart(elevationChartDiv.get(0));
     elevationChart.draw(map.elevationData, {
-        width: 350,
+        width: '100%',
         height: 245,
         legend: 'none',
         titleY: 'Elevation ('+metricUnit+')'
@@ -260,7 +256,7 @@ function plotSlope(elevations){
 // Draw the chart using the slope data within its div.
     slopeChart = new google.visualization.ColumnChart(slopeChartDiv.get(0));
     slopeChart.draw(map.slopeData, {
-        width: 350,
+        width: '100%',
         height: 245,
         legend: 'none',
         titleY: 'slope %'

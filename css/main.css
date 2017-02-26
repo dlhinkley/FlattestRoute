@@ -4,7 +4,8 @@ body {
 
 #map-canvas {
 	width: 500px;
-	height: 500px;
+	display: inline-flex;
+	height: 100%;
 	background-color: #CCC;
 }
 
@@ -21,7 +22,7 @@ body {
 
 #slope_chart,
 #elevation_chart {
-	width: 350px;
+	width: 100%;
 	height: 250px;
 	padding-top: 20px;
 }
@@ -74,7 +75,7 @@ form#routes .span3 {
 }
 
 form input {
-	width: 480px;
+	/*width: 480px;*/
 }
 
 form #from-to-switcher {

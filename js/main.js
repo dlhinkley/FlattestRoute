@@ -90,6 +90,7 @@ function initialize_maps() {
     // Create a google maps object.
     map = new google.maps.Map(mapCanvas, mapOptions);
     directionsDisplay.setMap(map);
+    directionsDisplay.setPanel($('#directions-panel').get(0));
     // Add elevation service.
     elevator = new google.maps.ElevationService();
 
@@ -221,7 +222,7 @@ function plotElevation(elevations, status) {
 
     elevationChart = new google.visualization.ColumnChart(elevationChartDiv.get(0));
     elevationChart.draw(map.elevationData, {
-        width: 350,
+        width: $('.tab-content').width(),
         height: 245,
         legend: 'none',
         titleY: 'Elevation ('+metricUnit+')'
@@ -260,7 +261,7 @@ function plotSlope(elevations){
 // Draw the chart using the slope data within its div.
     slopeChart = new google.visualization.ColumnChart(slopeChartDiv.get(0));
     slopeChart.draw(map.slopeData, {
-        width: 350,
+        width: $('.tab-content').width(),
         height: 245,
         legend: 'none',
         titleY: 'slope %'

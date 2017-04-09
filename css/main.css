@@ -14,10 +14,6 @@ body {
 	width: 100%;
 }
 
-#go {
-	margin: 20px 0 20px 0;
-  width: 150px;
-}
 
 #slope_chart,
 #elevation_chart {
@@ -80,8 +76,7 @@ form input {
 form #from-to-switcher {
 	background-image: url(../img/fromToSwitcher.png);
 	background-repeat: no-repeat;
-	margin-left: 45%;
-	margin-top: 10px;
+	background-position: center;
 	opacity: 0.5;
 	height: 30px;
 	width: 44px;

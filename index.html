@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<!-- Latest compiled and minified CSS -->
+	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/main.css?ver=3">
 
@@ -12,71 +12,91 @@
 </head>
 
 <body>
-	<a href="https://github.com/Zivi/FlattestRoute"><img id="github" style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-8">
-				<h1>Flattest Route</h1>
+<a href="https://github.com/Zivi/FlattestRoute"><img id="github" style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+<div id="main-container" class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12">
+			<h1>Flattest Route</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<form id="routes">
+			<div class="col-xs-3 col-sm-3 form-group">
+				<div id="target" class="place-inputs">
+					<div class="place-input">
+						<input id="from" type="text" class="form-control" placeholder="Type a place to start your journey">
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-1 col-sm-1 form-group">
+				<div id="from-to-switcher"></div>
+			</div>
+			<div class="col-xs-3 col-sm-3 form-group">
+				<div class="place-input">
+					<input id="to" type="text" class="form-control" placeholder="Type your destination">
+				</div>
+			</div>
+			<div class="col-xs-2 col-sm-2 form-group">
+				<div class="place-input">
+					<select class="form-control" id="travel-mode">
+						<option>Bicycling</option>
+						<option>Walking</option>
+						<option>Driving</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-2 col-sm-2 form-group">
+				<select class="form-control" id="measurement-mode">
+					<option value="miles">Miles</option>
+					<option value="km">Kilometres</option>
+				</select>
+			</div>
+			<div class="col-xs-1 col-sm-1 form-group">
+				<div class="place-input">
+					<button class="btn btn-primary" type="submit" id="go">Go</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="row">
+		<div class="col-xs-2 col-sm-2">
+			<div class="travel-info">
+				Distance:
+				<span id="distance"></span>
 			</div>
 		</div>
-
-	<div class="row">
-		<div class="col-xs-12 col-sm-8">
-			<form id="routes">
-					<div id="target" class="place-inputs">
-						<div class="place-input">
-								<input id="from" type="text" placeholder="Type a place to start your journey">
-						</div>
-						<div id="from-to-switcher"></div>
-						<div class="place-input">
-								<input id="to" type="text" placeholder="Type your destination">
-						</div>
-
-						<div class="row place-input selector-wrapper">
-							<div class="col-xs-6">
-								<select class="form-control" id="travel-mode">
-									<option>Bicycling</option>
-									<option>Walking</option>
-									<option>Driving</option>
-								</select>
-							</div>
-							<div class="col-xs-6">
-								<select class="form-control" id="measurement-mode">
-									<option value="miles">Miles</option>
-									<option value="km">Kilometres</option>
-								</select>
-							</div>
-						</div>
-
-						<div class="place-input">
-							<button class="btn btn-primary" type="submit" id="go">Go</button>
-						</div>
-					</div>
-			</form>
-		</div>
-		<div class="col-xs-12 col-sm-4">
-				<div class="row travel-info">
-						Distance:
-						<span id="distance"></span>
+		<div class="col-xs-10 col-sm-10">
+			<div class="travel-info">
+				<div id="travel-label">
+					Travel Time:
+					<span id="travel-time"></span>
 				</div>
-				<div class="row travel-info">
-					<div id="travel-label">
-						Travel Time:
-						<span id="travel-time"></span>
-					</div>
-				</div>
+			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div>
-			<div class="col-md-6" id="map-canvas"></div>
-		</div>
 		<div class="col-xs-12 col-sm-12">
-			<div class="chart hide col-sm-6" id="elevation_chart"></div>
-			<div class="chart hide col-sm-6" id="slope_chart"></div>
+			<div id="map-canvas"></div>
 		</div>
 	</div>
-	<div id="directionsPanel"></div>
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#elevation-menu">Elevation</a></li>
+		<li><a data-toggle="tab" href="#slope-menu">Slope</a></li>
+		<li><a data-toggle="tab" href="#directions-menu">Directions</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="elevation-menu" class="tab-pane fade in active">
+			<div class="chart hide" id="elevation_chart"></div>
+		</div>
+		<div id="slope-menu" class="tab-pane fade">
+			<div class="chart hide" id="slope_chart"></div>
+		</div>
+		<div id="directions-menu" class="tab-pane fade">
+			<div id="directions-panel"></div>
+		</div>
+	</div>
 	<div class="row" id="author">
 		<div class="col-md-6 .col-md-offset-4">
 			Created by <a href="https://www.twitter.com/z1v1">Zivi Weinstock </a>
@@ -84,23 +104,23 @@
 	</div>
 </div>
 	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=true&key=AIzaSyCOavQbPk8lvCNTUXzXXvvj02iej77Ldi0"></script>
-	<!-- <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script> -->
-	<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script> -->
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-	<script type="text/javascript" src="js/main.js?ver=2"></script>
+<script type="text/javascript" src="js/main.js?ver=2"></script>
 
-	 <script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', 'UA-40731267-1', 'flattestroute.com');
-	  ga('send', 'pageview');
+    ga('create', 'UA-40731267-1', 'flattestroute.com');
+    ga('send', 'pageview');
 
-	 </script>
+</script>
 </body>
 
 </html>
